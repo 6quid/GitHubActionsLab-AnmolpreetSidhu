@@ -1,0 +1,38 @@
+name: Multi-Platform Testing
+on: 
+    - pull_request
+jobs:
+  ubuntu-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Print OS Info
+        run: uname -a
+      - name: Create and Display File
+        run: |
+          echo "Running on Ubuntu" > os-info.txt
+          cat os-info.txt
+  windows-job:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Print OS Info
+        run: systeminfo | findstr /B /C:"OS Name" /C:"OS Version"
+      - name: Create and Display File
+        run: |
+          echo "Running on Windows" > os-info.txt
+          type os-info.txt
+  macos-job:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Print OS Info
+        run: uname -a
+      - name: Create and Display File
+        run: |
+          echo "Running on macOS" > os-info.txt
+          cat os-info.txt
+
